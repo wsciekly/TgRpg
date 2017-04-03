@@ -1,0 +1,11 @@
+{
+  "name": "vue_testy",
+  "version": "1.0.0",
+  "description": "Prosta aplikacja z uzyciem VueJs",
+  "main": "skryptek.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WsC",
+  "license": "MIT"
+}

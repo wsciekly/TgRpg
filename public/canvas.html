@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" />
+    <style>
+       #canvas{
+            border: 1px solid #a8f30c;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+       }
+       h3{
+           text-align: center;
+       }
+
+    </style>
+    <title>Tablica</title>
+</head>
+<body>
+    <h3>Tablica TgRpg</h3>
+    <canvas width="600" height="600" id="canvas"></canvas>  
+    <script>
+        var can = document.getElementById('canvas');
+        var c = can.getContext('2d');
+        var can_wysokosc = can.height,
+            can_szerokos = can.width;
+        c.strokeStyle = "#3db8a6";
+        c.beginPath();
+        c.moveTo(0,0);
+        c.lineTo(can_szerokos ,can_wysokosc);
+        c.stroke();
+
+    </script>  
+</body>
+</html>

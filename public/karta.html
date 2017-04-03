@@ -1,0 +1,152 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Karta postaci</title>
+</head>
+
+<body>
+    <div class="kont">
+        <h1>Karta postaci DS</h1>
+
+        <div class="kontener">
+            <span class="pula"> Pula punktów: <span id="pula">12</span></span>
+            <br><br>
+            <div class="cechy" id="cialo">
+                Ciało
+                <br>
+                <p class="ce" id="ci">2</p>
+                <button type="submit" id="ci_p" class="cecha_zmien">+</button>
+                <button type="submit" id="ci_m" class="cecha_zmien">-</button>
+            </div>
+            <div class="cechy" id="zwinnosc">
+                Zwinność
+                <br>
+                <p class="ce" id="zw">2</p>
+                <button type="submit" id="zw_p" class="cecha_zmien">+</button>
+                <button type="submit" id="zw_m" class="cecha_zmien">-</button>
+            </div>
+            <div class="cechy" id="duch">
+                Duch
+                <br>
+                <p class="ce" id="du">2</p>
+                <button type="submit" id="du_p" class="cecha_zmien">+</button>
+                <button type="submit" id="du_m" class="cecha_zmien">-</button>
+            </div>
+            
+            cos tu napisac wypadało by <br><br>
+            <div class="cechy2">Siła</div>
+            <div class="cechy2">Reakcja</div>
+            <div class="cechy2">Umysł</div>
+
+            <div class="cechy2">Wytrwałość</div>
+            <div class="cechy2">Precyzja</div>
+            <div class="cechy2">Aura</div>
+
+        </div>
+
+        <div class="drugi">
+           
+            <span class="pula"> Cechy bojowe</span>
+            <br><br>
+            <div class="cechy" id="cialo">
+                Żywotność
+                <br>
+                <p class="ce">8</p>
+                <p class="male">CIA+WY+10</p>
+            </div>
+            <div class="cechy" id="zwinnosc">
+                Obrona
+                <br>
+                <p class="ce">6</p>
+                <p class="male">CIA+WY+PP</p>
+            </div>
+            <div class="cechy" id="duch">
+                Uderzanie
+                <br>
+                <p class="ce">3</p>
+                <p class="male">CIA+SI+PU</p>
+            </div>
+
+            <div class="cechy" id="duch">
+                Strzelanie
+                <br>
+                <p class="ce">5</p>
+                <p class="male">ZWI+PR</p>
+            </div>
+            <div class="cechy" id="duch">
+                Unik
+                <br>
+                <p class="ce">1</p>
+                <p class="male">ZWI+RE-PP</p>
+            </div>
+            <div class="cechy" id="duch">
+                Czarowanie
+                <br>
+                <p class="ce">1</p>
+                <p class="male">DUC+AU+PZ-PZ</p>
+            </div>
+            <div class="cechy" id="duch">
+                Cz. Bojowe
+                <br>
+                <p class="ce">1</p>
+                <p class="male">DUC+PR+PZ-PP</p>
+            </div>
+            <br>
+
+            <div class="przerwa">
+
+            </div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium sint doloremque molestias, commodi magni in cumque ipsa
+            ex dolorem quibusdam at repudiandae distinctio quisquam itaque deleniti similique, fuga dignissimos culpa.
+        </div>
+        <div class="przerwa">a cos tu napisze...</div>
+    </div>
+    <!--Zamyka całość-->
+    <br>
+    <br>
+    <br>
+
+    <script>
+        $(document).ready(function () {
+            var pula = 12;
+            $('.cecha_zmien').click(function () {
+                var przycisk_zmien = $(this).attr("id"), //id kliknietego przycisku
+                    przycisk = document.querySelector('#' + przycisk_zmien);
+                //pobranie klasy <div> w ktorym znajduje sie
+                //klikniety przycisk po to by pozniej moc manipulowac elementem <p> w danym divie 
+                var div_cech = (przycisk.parentNode).getAttribute('class');
+                //jezli ostatnia litera w id przycisku jest p to dodaj do cechy
+                var cecha = parseInt($('#' + przycisk_zmien.substring(0, 2)).text());
+                if (przycisk_zmien.substring(przycisk_zmien.length - 1) == 'p') {
+                    if (cecha <= 8 && pula > 0) {
+                        cecha += 2;
+                        pula -= 2;
+                        $('#' + przycisk_zmien.substring(0, 2)).empty().append(cecha);
+                        $('#pula').empty().append(pula);
+                    }
+                    //w przeciwnym wypadku odejmij od cechy
+                } else {
+                    if (przycisk_zmien.substring(przycisk_zmien.length - 1) == 'm') {
+                        if (cecha > 2) {
+                            cecha -= 2;
+                            pula += 2;
+                            $('#' + przycisk_zmien.substring(0, 2)).empty().append(cecha);
+                            $('#pula').empty().append(pula);
+                        }
+                        console.log('Id przycisku : ' + przycisk_zmien);
+                        console.log(cecha);
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

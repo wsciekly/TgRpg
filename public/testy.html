@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testy....</title>
+<style>
+    #nick{
+        color: #0000d5;
+    }
+    #wiad{
+        color: #14a211;
+    }
+</style>
+
+</head>
+<body>
+    <ul>
+            <li>
+                <span id="nick">WsC</span><span id="wiad"> Wiadomość </span>
+            </li>
+        </ul>
+    <div id="konsola">
+        
+    </div>
+
+    <script>
+        var tablica = ['Zamek' ,'Cmentarz' ,'Jaskinie' , 'Wioska' , 'Wrak statku' , 
+                        'Las' , 'Nawiedzony dom'];
+        var lokacja = Math.floor(Math.random() * tablica.length);
+        var konsola = document.getElementById("konsola").innerHTML =  tablica[lokacja];
+        konsola.innerHtml = tablica[0];
+        console.log(tablica[1]);
+
+
+
+    </script>
+</body>
+</html>

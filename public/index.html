@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>TgRpgCzat</title>
+    <base href="/">
+</head>
+
+<body>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Konsolka...</h3>
+
+        </div>
+        <div class="panel-body" id="konsolka">
+            <a href="tablica">Tablica</a> :: <a href="testy">Polygon</a> :: <a href="karta">Karta</a>
+            <br>
+            <h3>Wszystko jest w fazie testów i produkcji.</h3>
+            <h5>Mogą pojawić się błedy...</h5>
+            <span id="informacje"></span>
+
+            <div id="user_panel">
+                Podaj swój nick:
+                <input type="text" id="user">
+                <button id="nick" class="btn btn-info btn-sm">Ok </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="chat">
+
+
+        <div id="msg_form">
+            <form action="" id="send">
+                <input id="message" type="text" name="wiadomosc" size="45">
+                <button id="submit" class="btn btn-warning btn-sm">Wyślij</button>
+                <button id="rzut" class="btn btn-info btn-sm">Rzuć sobie K6</button>
+            </form>
+        </div>
+        <div id="msg_panel">
+            <div id="mess"></div>
+            <div class="batonik">
+                <button id="clean" class="btn btn-danger">Wyczyść</button>
+            </div>
+        </div>
+
+    </div>
+    <!--Koniec Diva o klasie container id chat -->
+
+    <script>
+        $(document).ready(function() {
+            var audio = new Audio('message.mp3');
+            const socket = io.connect();
+            var user = 'Janusz';
+            $('#msg_form').hide();
+            $('#msg_panel').hide();
+
+
+            /* UZYTKOWNIK */
+            $('#nick').click(function(event) {
+                event.preventDefault();
+                var nick = $('#user').val();
+                if (nick != '' && nick.length >= 3) {
+                    user = nick;
+                    $('#user_panel').hide();
+                    $('#informacje').append("<br>Twój nick to: " + user);
+                    $('#msg_form').show();
+                    $('#msg_panel').show();
+
+                } else {
+                    alert(user + '!! Nick nie moze byc pusty i musi skladać się conajmniej z 3 znaków');
+                }
+
+            }); //click button #nick
+
+            //polaczenie z serwerm zdalnym
+            // var socket = io.connect("http://wsciek.ct8.pl/");
+            //polaczenie z serwerm lokalnym
+
+            socket.on('info', function(tekst) {
+                $('#konsolka').append(tekst);
+            });
+            socket.on('chat.message', function(wiadomosc) {
+
+                $('#mess').append('<span>' +
+                    wiadomosc[0] + ' : ' + wiadomosc[1] + '</span><br>');
+
+                if (user != wiadomosc[0]) {
+                    audio.play();
+                }
+                $("#msg_panel").animate({
+                    scrollTop: $("#msg_panel")[0].scrollHeight
+                }, 100);
+            });
+            socket.on('rzut', function(wynikRzutu) {
+                $('#mess').append('<span>' + wynikRzutu[0] + ' rzucił: ' + wynikRzutu[1] + '</span><br>');
+                $("#msg_panel").animate({
+                    scrollTop: $("#msg_panel")[0].scrollHeight
+                }, 100);
+            });
+            $('#send').submit(function(ev) {
+                ev.preventDefault();
+                var text = $('#message').val();
+                if (text.length != 0) {
+                    var wiadomosc = [user, text];
+                    socket.emit('chat.message', wiadomosc);
+
+                    $('#message').val('');
+
+                }
+            }); //zamyka onsubmit
+            /* CZYSZCZENIE CZATU */
+            $('#clean').click(function(ev) {
+                $('#mess').html('');
+            }); //KONIEC CZYSZCENIA
+            /* RZUT K6*/
+            $('#rzut').click(function(ev) {
+                ev.preventDefault();
+                var wynik = Math.floor(Math.random() * 6 + 1);
+                var wynikRzutu = [user, wynik];
+                socket.emit('rzut', wynikRzutu);
+
+
+
+            }); //zamyka rzut
+
+        }); //zamyka document.ready
+
+    </script>
+</body>
+
+</html>

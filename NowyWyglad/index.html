@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="stylki.css" />
+    <script src="https://unpkg.com/vue"></script>
+    <script src="skryptek.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body logo">
+                    <h4>Tu powinno być menu i informacji o bierzącej sesji i ewentualnych użytkownikach biorących w niej udział </h4>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" id="czat">{{ title }}</h3>
+                    </div>
+                    <div class="panel-body ">
+                        Czat...aczkolwiek nie jestem przekonany czy naprawdę jest on potrzebny.
+                        <br><br>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6 ">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tablica</h3>
+                    </div>
+                    <div class="panel-body ">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32">
+                        <img src="kafelek.jpg" alt="kafelek" title="kafelek" height="32" width="32"> <br>
+                        Miejsce gdzie mistrz gry będzie mógł coś narysować lub stworzyć przy pomocy kafelków np. lokacja zbudowana z spritów.
+                        <canvas id="plotno" width="50" height="50"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Postać</h3>
+                    </div>
+                    <div class="panel-body ">
+                      Tu będzie wyświetlana postać przypisana do danej sesji.Jeśli takowej nie będzie,pojawi się przycisk "stwórz postać".<br>
+                        Do zrobienia!
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Notatki</h3>
+                        
+                    </div>
+                    <div class="panel-body ">
+                        To miejsce przeznaczone jest na notatki przypisane do danej sesji... <br>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="skryptek.js"></script>
+</body>
+
+</html>
